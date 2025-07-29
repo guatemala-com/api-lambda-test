@@ -30,6 +30,7 @@ jobs:
         with:
           version: 10 # O la versión que prefieras
 
+      # Este paso ahora funcionará porque el lockfile está actualizado
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
@@ -40,5 +41,6 @@ jobs:
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: ${{ env.AWS_REGION }}
 
+      # Este es el único comando que necesitas para construir y desplegar
       - name: Deploy to AWS with Serverless
         run: pnpm run deploy
