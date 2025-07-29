@@ -11,7 +11,6 @@ jobs:
 
     env:
       AWS_REGION: us-west-2
-      FUNCTION_NAME: aprende-headless-api
 
     strategy:
       matrix:
@@ -29,46 +28,17 @@ jobs:
       - name: Setup pnpm
         uses: pnpm/action-setup@v4
         with:
-          version: 10.11.0
+          version: 10 # O la versión que prefieras
 
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
-      - name: Install esbuild
-        run: pnpm add -D esbuild
-
-      - name: Build with esbuild
-        run: |
-          npx esbuild src/lambda.ts \
-            --bundle \
-            --platform=node \
-            --target=node20 \
-            --minify \
-            --outfile=dist/index.js \
-            --external:@nestjs/websockets \
-            --external:@nestjs/microservices \
-            --external:@prisma/client \
-            --external:class-validator \
-            --external:class-transformer \
-            --external:aws-sdk
-
-
-      - name: Create Lambda zip
-        run: |
-          mkdir -p bundle
-          cp dist/index.js bundle/index.js
-          cd bundle
-          zip -r ../lambda.zip .
-
       - name: Configure AWS credentials
-        uses: aws-actions/configure-aws-credentials@v2
+        uses: aws-actions/configure-aws-credentials@v4
         with:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: ${{ env.AWS_REGION }}
 
-      - name: Deploy to AWS Lambda
-        run: |
-          aws lambda update-function-code \
-            --function-name ${{ env.FUNCTION_NAME }} \
-            --zip-file fileb://lambda.zip
+      - name: Deploy to AWS with Serverless
+        run: pnpm run deploy
