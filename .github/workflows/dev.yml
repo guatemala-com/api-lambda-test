@@ -11,7 +11,7 @@ jobs:
 
     env:
       AWS_REGION: us-west-2
-      FUNCTION_NAME: aprende_headless_api
+      FUNCTION_NAME: aprende-headless-api
 
     strategy:
       matrix:
