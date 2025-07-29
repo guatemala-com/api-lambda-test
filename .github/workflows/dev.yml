@@ -39,9 +39,19 @@ jobs:
 
       - name: Build with esbuild
         run: |
-          npx esbuild src/lambda.ts --bundle --platform=node --target=node20  --minify --outfile=dist/index.js \
+          npx esbuild src/lambda.ts \
+            --bundle \
+            --platform=node \
+            --target=node20 \
+            --minify \
+            --outfile=dist/index.js \
             --external:@nestjs/websockets \
-            --external:@nestjs/microservices
+            --external:@nestjs/microservices \
+            --external:@prisma/client \
+            --external:class-validator \
+            --external:class-transformer \
+            --external:aws-sdk
+
 
       - name: Create Lambda zip
         run: |
