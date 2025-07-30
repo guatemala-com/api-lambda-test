@@ -28,7 +28,7 @@ jobs:
       - name: Setup pnpm
         uses: pnpm/action-setup@v4
         with:
-          version: 10 # la versión que prefieras
+          version: 10
 
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
@@ -40,6 +40,6 @@ jobs:
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: ${{ env.AWS_REGION }}
 
-      # Este es el único comando que necesitas para construir y desplegar
+      # --- LÍNEA MODIFICADA ---
       - name: Deploy to AWS with Serverless
-        run: pnpm run deploy
+        run: pnpm run deploy -- --force # Añadimos -- --force
