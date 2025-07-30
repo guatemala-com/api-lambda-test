@@ -2,7 +2,7 @@ service: aprende-headless-api
 
 frameworkVersion: '3'
 
-# Activa el plugin que acabamos de instalar
+# Jetpack es todo lo que necesitamos para la optimización
 plugins:
   - serverless-jetpack
 
