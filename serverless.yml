@@ -2,21 +2,22 @@ service: aprende-headless-api
 
 frameworkVersion: '3'
 
+# Activa el plugin que acabamos de instalar
+plugins:
+  - serverless-jetpack
+
 provider:
   name: aws
   runtime: nodejs20.x
   stage: dev
   region: us-west-2
 
-# Esta sección ahora es más simple y correcta.
-# Serverless incluirá automáticamente tu código compilado y las dependencias de producción.
 package:
   individually: true
 
 functions:
   main:
-    # Asegúrate de que el handler apunta a la carpeta de compilación 'dist'
-    handler: dist/lambda.handler 
+    handler: dist/lambda.handler
     events:
       - httpApi:
           path: /{proxy+}
