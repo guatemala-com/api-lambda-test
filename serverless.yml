@@ -1,4 +1,4 @@
-service: aprende-headless-api # Coincide con tu FUNCTION_NAME
+service: aprende-headless-api
 
 frameworkVersion: '3'
 
@@ -6,19 +6,18 @@ provider:
   name: aws
   runtime: nodejs20.x
   stage: dev
-  region: us-west-2 # Coincide con tu AWS_REGION
+  region: us-west-2
 
+# Esta sección ahora es más simple y correcta.
+# Serverless incluirá automáticamente tu código compilado y las dependencias de producción.
 package:
   individually: true
-  patterns:
-    - '!node_modules/**'
-    - 'node_modules/aws-sdk/**' # Excluir aws-sdk, ya está en el entorno Lambda
-    - 'node_modules/aws-lambda/**'
 
 functions:
   main:
-    handler: dist/lambda.handler # Ruta al handler en el código compilado
+    # Asegúrate de que el handler apunta a la carpeta de compilación 'dist'
+    handler: dist/lambda.handler 
     events:
-      - httpApi: # Crea un API Gateway para acceder a tu función
+      - httpApi:
           path: /{proxy+}
           method: '*'
