@@ -28,9 +28,8 @@ jobs:
       - name: Setup pnpm
         uses: pnpm/action-setup@v4
         with:
-          version: 10 # O la versión que prefieras
+          version: 10 # la versión que prefieras
 
-      # Este paso ahora funcionará porque el lockfile está actualizado
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
