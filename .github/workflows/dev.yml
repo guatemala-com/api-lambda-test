@@ -40,6 +40,5 @@ jobs:
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: ${{ env.AWS_REGION }}
 
-      # --- LÍNEA MODIFICADA ---
       - name: Deploy to AWS with Serverless
         run: pnpm run deploy -- --force # Añadimos -- --force
