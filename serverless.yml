@@ -2,6 +2,10 @@ service: aprende-headless-api
 
 frameworkVersion: '3'
 
+# ssm compatibility mode
+configValidationMode: error
+variablesResolutionMode: 20210326
+
 # Jetpack es todo lo que necesitamos para la optimización
 plugins:
   - serverless-jetpack
