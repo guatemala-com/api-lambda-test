@@ -1,4 +1,4 @@
-name: Deploy Lambda
+name: Deploy Lambda (Dev)
 
 on:
   push:
@@ -11,6 +11,9 @@ jobs:
 
     env:
       AWS_REGION: us-west-2
+      NODE_ENV: dev
+      DB_HOST: dev-db.example.com
+      JWT_SECRET: /aprende-headless/dev-jwt-secret
 
     strategy:
       matrix:

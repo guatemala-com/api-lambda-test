@@ -9,7 +9,7 @@ plugins:
 provider:
   name: aws
   runtime: nodejs20.x
-  stage: dev
+  stage: ${env:NODE_ENV}
   region: us-west-2
 
   # authorizer api gateway + cognito
@@ -17,10 +17,10 @@ provider:
     authorizers:
       cognitoAuthorizer:
         identitySource: $request.header.Authorization
-        #issuerUrl: https://cognito-idp.us-west-2.amazonaws.com/${env:COGNITO_USER_POOL_ID}
+        #issuerUrl: https://cognito-idp.us-west-2.amazonaws.com/${env:COGNITO_USER_POOL_ID} < terraform
         issuerUrl: https://cognito-idp.us-west-2.amazonaws.com/us-west-2_fNlNZKbWS
         audience:
-          #- ${env:COGNITO_APP_CLIENT_ID}
+          #- ${env:COGNITO_APP_CLIENT_ID} < terraform
           - 7l1c27fr98o1s4885qd7ke9ha6
 
 package:
@@ -29,6 +29,10 @@ package:
 functions:
   main:
     handler: dist/lambda.handler
+    environment:
+      NODE_ENV: ${env:NODE_ENV}
+      DB_HOST: ${env:DB_HOST}
+      JWT_SECRET: ${ssm:${env:JWT_SECRET}~true}
     events:
       - httpApi:
           path: /{proxy+}
