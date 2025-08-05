@@ -12,8 +12,11 @@ jobs:
     env:
       AWS_REGION: us-west-2
       NODE_ENV: test
+      STAGE: test
       DB_HOST: dev-db.localhost.com
       JWT_SECRET: /aprende-headless/jwt-secret
+      COGNITO_APP_CLIENT_ID: 7l1c27fr98o1s4885qd7ke9ha6
+      COGNITO_USER_POOL_ID: us-west-2_fNlNZKbWS
 
     strategy:
       matrix:
