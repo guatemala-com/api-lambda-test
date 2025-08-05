@@ -2,7 +2,7 @@ service: aprende-headless-api
 
 frameworkVersion: '3'
 
-# Jetpack es todo lo que necesitamos para la optimización
+# Jetpack optimizes the lambda function
 plugins:
   - serverless-jetpack
 
