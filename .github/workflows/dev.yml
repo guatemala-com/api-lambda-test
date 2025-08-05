@@ -44,4 +44,4 @@ jobs:
           aws-region: ${{ env.AWS_REGION }}
 
       - name: Deploy to AWS with Serverless
-        run: pnpm run deploy -- --force # Añadimos -- --force
+        run: pnpm run deploy -- --force
