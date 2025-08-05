@@ -25,7 +25,7 @@ provider:
        - ${env:SUBNET_1_ID}
        - ${env:SUBNET_2_ID}
 
-  # authorizer api gateway + cognito
+  # authorizer api gateway + cognito.
   httpApi:
     authorizers:
       cognitoAuthorizer:
