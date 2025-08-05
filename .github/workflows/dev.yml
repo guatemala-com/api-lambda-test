@@ -16,6 +16,9 @@ jobs:
       JWT_SECRET: /aprende-headless/jwt-secret
       COGNITO_APP_CLIENT_ID: 7l1c27fr98o1s4885qd7ke9ha6
       COGNITO_USER_POOL_ID: us-west-2_fNlNZKbWS
+      SECURITY_GROUP_ID: sg-017c21818f7a54170
+      SUBNET_1_ID: subnet-0781179e4d818463a
+      SUBNET_2_ID: subnet-0f653f903795f4c99
 
     strategy:
       matrix:
