@@ -2,10 +2,6 @@ service: aprende-headless-api
 
 frameworkVersion: '3'
 
-# ssm compatibility mode
-configValidationMode: error
-variablesResolutionMode: 20210326
-
 # Jetpack es todo lo que necesitamos para la optimización
 plugins:
   - serverless-jetpack
@@ -30,16 +26,13 @@ provider:
 package:
   individually: true
 
-custom:
-  jwtSecret: ${ssm:/aprende-headless/jwt-secret~true}
-
 functions:
   main:
     handler: dist/lambda.handler
     environment:
       NODE_ENV: ${env:NODE_ENV}
       DB_HOST: ${env:DB_HOST}
-      JWT_SECRET: ${self:custom.jwtSecret}
+      JWT_SECRET: ${env:JWT_SECRET}
     events:
       - httpApi:
           path: /{proxy+}
