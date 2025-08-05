@@ -26,13 +26,16 @@ provider:
 package:
   individually: true
 
+custom:
+  jwtSecretPath: /aprende-headless/${env:NODE_ENV}-jwt-secret
+
 functions:
   main:
     handler: dist/lambda.handler
     environment:
       NODE_ENV: ${env:NODE_ENV}
       DB_HOST: ${env:DB_HOST}
-      JWT_SECRET: ${ssm:${env:JWT_SECRET}~true}
+      JWT_SECRET: ${ssm:${self:custom.jwtSecretPath}~true}
     events:
       - httpApi:
           path: /{proxy+}
