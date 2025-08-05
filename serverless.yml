@@ -21,9 +21,9 @@ provider:
   #vpc:
   #  securityGroupIds:
   #    - sg-017c21818f7a54170 #Backend
- #   subnetIds:
- #     - subnet-0781179e4d818463a #Frontend
- #     - subnet-0f653f903795f4c99 #Backend
+  #  subnetIds:
+  #    - subnet-0781179e4d818463a #Frontend
+  #    - subnet-0f653f903795f4c99 #Backend
 
   # authorizer api gateway + cognito
   httpApi:
