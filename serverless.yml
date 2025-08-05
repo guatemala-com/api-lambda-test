@@ -43,9 +43,9 @@ functions:
   main:
     handler: dist/lambda.handler
     environment:
-      NODE_ENV: ${env:NODE_ENV}
-      DB_HOST: ${env:DB_HOST}
-      JWT_SECRET: ${env:JWT_SECRET}
+      NODE_ENV: ${env:NODE_ENV, 'development'}
+      DB_HOST: ${env:DB_HOST, 'localhost'}
+      JWT_SECRET: ${env:JWT_SECRET, 'secret'}
     events:
       - httpApi:
           path: /{proxy+}
