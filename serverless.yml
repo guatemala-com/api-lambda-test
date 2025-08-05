@@ -12,6 +12,17 @@ provider:
   stage: dev
   region: us-west-2
 
+  # authorizer api gateway + cognito
+  httpApi:
+    authorizers:
+      cognitoAuthorizer:
+        identitySource: $request.header.Authorization
+        #issuerUrl: https://cognito-idp.us-west-2.amazonaws.com/${env:COGNITO_USER_POOL_ID}
+        issuerUrl: https://cognito-idp.us-west-2.amazonaws.com/us-west-2_fNlNZKbWS
+        audience:
+          #- ${env:COGNITO_APP_CLIENT_ID}
+          - 7l1c27fr98o1s4885qd7ke9ha6
+
 package:
   individually: true
 
@@ -22,3 +33,6 @@ functions:
       - httpApi:
           path: /{proxy+}
           method: '*'
+          # authorizer api gateway + cognito
+          authorizer:
+            name: cognitoAuthorizer
