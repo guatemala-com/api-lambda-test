@@ -12,7 +12,7 @@ jobs:
     env:
       AWS_REGION: us-west-2
       NODE_ENV: dev
-      DB_HOST: dev-db.example.com
+      DB_HOST: dev-db.localhost.com
       JWT_SECRET: /aprende-headless/jwt-secret
 
     strategy:
